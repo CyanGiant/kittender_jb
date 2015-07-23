@@ -91,11 +91,10 @@ var catData = {
     labels: ["Cat 01", "Cat 02", "Cat 03", "Cat 04", "Cat 05", "Cat 06", "Cat 07", "Cat 08", "Cat 09", "Cat 10", "Cat 11", "Cat 12", "Cat 13", "Cat 14"],
     datasets: [
         {
-            label: "My First dataset",
-            fillColor: "rgba(220,220,220,0.5)",
-            strokeColor: "rgba(220,220,220,0.8)",
-            highlightFill: "rgba(220,220,220,0.75)",
-            highlightStroke: "rgba(220,220,220,1)",
+            fillColor: "#CC3300",
+            strokeColor: "orange",
+            highlightFill: "orange",
+            highlightStroke: "#CC3300",
             data: data
         }
     ]

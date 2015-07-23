@@ -1,11 +1,11 @@
 body{
-  background-color: white;
+  background-color: grey;
 }
 canvas {
   float: center;
   margin: 0 1.5em;
 }
-p { 
+p {
   font-family: 'Bitter', Arial, sans-serif;
   font-weight: 400;
   font-size: 1.25em;
@@ -37,7 +37,7 @@ div:hover {
 }
 #imgLeft {
   float: left;
-  display: inline-block;  
+  display: inline-block;
   border: 5px solid orange;
   margin-right: 0.5em;
 }
