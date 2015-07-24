@@ -1,10 +1,21 @@
 $(document).ready(function() {
+
+var pics;
+
+$.ajax({
+  url: 'http://api.imgur.com/3/album/DDoWy.json',
+  method: 'GET',
+  headers: {
+    'Authorization': 'Client-ID 8de3d09d2533385'
+  }
+})
+.done(function(res) {
+  pics = res.data.images;
   if(!localStorage.getItem('key')) {
     populateStorage();
   } else {
     retrieveStorage();
   }
-});
 
 function populateStorage() {
   localStorage.setItem('key', JSON.stringify(images));
@@ -13,16 +24,17 @@ function retrieveStorage() {
   JSON.parse(localStorage.getItem('key'));
 }
 
-
-var Image = function(name, ext, votes) {
-  this.name     = name;
+var Image       = function(ext) {
   this.ext      = ext;
   this.votes    = 0;
   this.img      = document.createElement('img');
   this.img.src  = this.ext;
-  this.imgLeft  = $('#imgLeft');
-  this.imgRight = $('#imgRight');
 };
+
+var images      = [];
+for(var i = 0; i< pics.length; i++){
+  images.push(new Image(pics[i].link));
+}
 
 var tracker = Image.prototype.tracker = function() {
   $('#imgLeft').click(function() {
@@ -52,27 +64,11 @@ var tracker = Image.prototype.tracker = function() {
 }
 tracker();
 
-var images = [];
-images.push(new Image('Cat 01', 'img/cat01.jpg', 0));
-images.push(new Image('Cat 02', 'img/cat02.jpg', 0));
-images.push(new Image('Cat 03', 'img/cat03.jpg', 0));
-images.push(new Image('Cat 04', 'img/cat04.jpg', 0));
-images.push(new Image('Cat 05', 'img/cat05.jpg', 0));
-images.push(new Image('Cat 06', 'img/cat06.jpg', 0));
-images.push(new Image('Cat 07', 'img/cat07.jpg', 0));
-images.push(new Image('Cat 08', 'img/cat08.jpg', 0));
-images.push(new Image('Cat 09', 'img/cat09.jpg', 0));
-images.push(new Image('Cat 10', 'img/cat10.jpg', 0));
-images.push(new Image('Cat 11', 'img/cat11.jpg', 0));
-images.push(new Image('Cat 12', 'img/cat12.jpg', 0));
-images.push(new Image('Cat 13', 'img/cat13.jpg', 0));
-images.push(new Image('Cat 14', 'img/cat14.jpg', 0));
-
 function randomIndex(left, right) {
-  this.imgLeft.src = images[Math.floor((Math.random() * images.length))].ext;
-  this.imgRight.src = images[Math.floor((Math.random() * images.length))].ext;
+  this.imgLeft.src     = images[Math.floor((Math.random() * images.length))].ext;
+  this.imgRight.src    = images[Math.floor((Math.random() * images.length))].ext;
   if (this.imgLeft.src === this.imgRight.src) {
-    this.imgRight.src = images[Math.floor((Math.random() * images.length))].ext;
+    this.imgRight.src  = images[Math.floor((Math.random() * images.length))].ext;
   } else {
   }
 }
@@ -91,10 +87,10 @@ var catData = {
     labels: ["Cat 01", "Cat 02", "Cat 03", "Cat 04", "Cat 05", "Cat 06", "Cat 07", "Cat 08", "Cat 09", "Cat 10", "Cat 11", "Cat 12", "Cat 13", "Cat 14"],
     datasets: [
         {
-            fillColor: "#CC3300",
+            fillColor: "#FFDB4D",
             strokeColor: "orange",
             highlightFill: "orange",
-            highlightStroke: "#CC3300",
+            highlightStroke: "#FFDB4D",
             data: data
         }
     ]
@@ -112,3 +108,9 @@ var populate = Image.prototype.populate = function() {
   }
   chart(newData);
 }
+})
+.fail(function(err) {
+  console.log(err);
+});
+
+});
