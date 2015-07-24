@@ -1,0 +1,19 @@
+{
+  "name": "vote-tracker",
+  "version": "1.0.0",
+  "description": "The <em>purrfect</em> partner is just a click away.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CyanGiant/kittender_jb.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CyanGiant/kittender_jb/issues"
+  },
+  "homepage": "https://github.com/CyanGiant/kittender_jb#readme"
+}
